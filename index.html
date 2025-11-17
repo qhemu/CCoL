@@ -325,12 +325,18 @@
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Continuous Vision-Language-Action Co-Learning (CCoL)</h2>
-        <div class="content has-text-justified">
-          <!-- TODO: Replace with your paper abstract -->
-          <p>
-            Language-conditioned manipulation facilitates human-robot interaction via behavioral cloning (BC), which learns control policies from human demonstrations and serves as a cornerstone of embodied AI. Overcoming compounding errors in sequential action decisions remains a central challenge to improving BC performance. Existing approaches mitigate compounding errors through data augmentation, expressive representation, or temporal abstraction. However, they suffer from physical discontinuities and semantic-physical misalignment, leading to inaccurate action cloning and intermittent execution. In this paper, we present Continuous vision-language-action Co-Learning with Semantic-Physical Alignment (CCoL), a novel BC framework that ensures temporally consistent execution and fine-grained semantic grounding. It generates robust and smooth action execution trajectories through continuous co-learning across vision, language, and proprioceptive inputs (i.e., robot internal states). Meanwhile, we anchor language semantics to visuomotor representations by a bidirectional cross-attention to learn contextual information for action generation, successfully overcoming the problem of semantic-physical misalignment. Extensive experiments show that CCoL achieves an average 8.0% relative improvement across three simulation suites, with up to 19.2% relative gain in human-demonstrated bimanual insertion tasks. Real-world tests on a 7-DoF robot further confirm CCoL’s generalization under unseen and noisy object states.
-          </p>
-        </div>
+        <img src="static/videos/models.jpg" alt="CCoL Framework Overview" width="100%">
+        <p>
+          CCoL is a novel BC framework designed to tackle physical discontinuities and semantic-physical misalignment [cite: 1453-1454]. It consists of two key components:
+        </p>
+        <ul>
+          <li>
+            <strong>Multimodal Continuous Co-Learning (MCC):</strong> We use Neural Ordinary Differential Equations (NeuralODEs) to model the continuous evolution of the robot's proprioceptive state in a latent space[cite: 1564, 1587]. This ensures that the generated action trajectories are dynamically consistent and smooth, eliminating the jerky motions seen in conventional methods [cite: 1562-1563, 1723].
+          </li>
+          <li>
+            <strong>Cross-modal Semantic-Physical Alignment (CSA):</strong> We introduce a bidirectional cross-attention mechanism that dynamically anchors high-level language instructions (e.g., nouns like "cube" and verbs like "transfer") to the robot's low-level visuomotor representations at each timestep[cite: 1584, 1599, 1788]. This enables fine-grained semantic grounding and precise task execution[cite: 1485].
+          </li>
+        </ul>
       </div>
     </div>
   </div>
