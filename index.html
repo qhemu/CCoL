@@ -74,7 +74,7 @@
 
 
   <!-- TODO: Replace with your paper title and authors -->
-  <title>PAPER_TITLE - AUTHOR_NAMES | Academic Research</title>
+  <title>CCoL: Continuous Vision-Language-Action Co-Learning with Semantic-Physical Alignment for Behavioral Cloning</title>
   
   <!-- Favicon and App Icons -->
   <!-- <link rel="icon" type="image/x-icon" href="static/images/robot.svg"> -->
@@ -110,6 +110,7 @@
   <script defer src="static/js/bulma-carousel.min.js"></script>
   <script defer src="static/js/bulma-slider.min.js"></script>
   <script defer src="static/js/index.js"></script>
+  
   
   <!-- Structured Data for Academic Papers -->
   <script type="application/ld+json">
@@ -448,7 +449,7 @@ document.addEventListener('DOMContentLoaded', () => {
       Watch CCoL in action. We show results in simulation and on a real 7-DoF robot.
     </p>
 
-    <div class="tabs is-centered is-boxed is-medium" id="video-tabs">
+    <div class="tabs is-centered is-boxed is-medium hero-body" id="video-tabs">
       <ul>
         <li class="is-active" data-tab="simulation-tab">
           <a>
@@ -459,93 +460,73 @@ document.addEventListener('DOMContentLoaded', () => {
         <li data-tab="real-world-tab">
           <a>
             <span class="icon is-small"><i class="fas fa-robot"></i></span>
-            <span>Real-World (3 Videos)</span>
+            <span>Real-World</span>
           </a>
         </li>
       </ul>
     </div>
 
     <div class="tabs-content-container">
-
       <div class="tab-content is-active" id="simulation-tab-content">
         <div class="video-item">
           <div style="text-align: center;"><h3>CCoL vs Baselines in Simulation</h3></div>
-          <div class="video-embed">
-            <iframe src="https://www.youtube.com/embed/kj3bvXrMllc" title="Simulator Results" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <div class="video-embed publication-video item item-video1">
+            <iframe src="https://www.youtube.com/embed/kj3bvXrMllc" height="100%" title="Simulator Results" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
         </div>
       </div>
 
       <div class="tab-content" id="real-world-tab-content" style="display: none;">
+        <div class="columns is-centered">
+          <div class="column is-one-third">
+            <div style="text-align: center;"><h3>Real-World: Pen Lifting</h3></div>
+            
+            <div class="video-embed vertical-video">
+              <iframe src="https://www.youtube.com/embed/8Q2mN1Rc6yk" title="Real-World Scene 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+
+          <div class="column is-one-third">
+            <div style="text-align: center;"><h3>Real-World: Cube Sliding</h3></div>
+            <div class="video-embed vertical-video">
+              <iframe src="https://www.youtube.com/embed/1AIMAiQhhKQ" title="Real-World Scene 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+
+          <div class="column is-one-third">
+            <div style="text-align: center;"><h3>Real-World: Cubes Placement</h3></div>
+            <div class="video-embed vertical-video">
+              <iframe src="https://www.youtube.com/embed/Tz91ZEMz_gU" title="Real-World Scene 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+
+        </div> </div>
+
+      <!-- <div class="tab-content" id="real-world-tab-content" style="display: none;">
         <div class="video-grid-3-col">
           <div class="video-item">
             <div style="text-align: center;"><h3>Real-World: Pen Lifting</h3></div>
-            <div class="video-embed">
+            <div class="video-embed publication-video item item-video1">
               <iframe src="https://www.youtube.com/embed/8Q2mN1Rc6yk" title="Real-World Scene 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
           </div>
           <div class="video-item">
             <div style="text-align: center;"><h3>Real-World: Cube Sliding</h3></div>
-            <div class="video-embed">
+            <div class="video-embed publication-video item item-video1">
               <iframe src="https://www.youtube.com/embed/1AIMAiQhhKQ" title="Real-World Scene 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
           </div>
           <div class="video-item">
             <div style="text-align: center;"><h3>Real-World: Cubes Placement</h3></div>
-            <div class="video-embed">
+            <div class="video-embed publication-video item item-video1">
               <iframe src="https://www.youtube.com/embed/Tz91ZEMz_gU" title="Real-World Scene 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
           </div>
-        </div> </div> 
+        </div> </div>  -->
       </div> </div> </section>
 
 
-<!-- <div class="content-section" id="videos">
-    <h2>Videos</h2>
-    
-    <div class="video-grid-2-col">
-        
-        <div class="video-item">
-            <div style="text-align: center;"><h3>Simulator Results</h3></div>
-            <div class="video-embed">
-                <iframe src="https://www.youtube.com/embed/kj3bvXrMllc" title="Simulator Results" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </div>
 
-        <div class="video-item">
-            <div style="text-align: center;"><h3>Data Collection Process</h3></div>
-            <div class="video-embed">
-                <iframe src="https://www.youtube.com/embed/LCTqXsali-8" title="Data Collection Process" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </div>
-    </div> 
-    
-    <div class="video-grid-3-col">
-        
-        <div class="video-item">
-            <div style="text-align: center;"><h3>Real-World Scene 1</h3></div>
-            <div class="video-embed">
-                <iframe src="https://www.youtube.com/embed/8Q2mN1Rc6yk" title="Real-World Scene 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </div>
-
-        <div class="video-item">
-            <div style="text-align: center;"><h3>Real-World Scene 2</h3></div>
-            <div class="video-embed">
-                <iframe src="https://www.youtube.com/embed/1AIMAiQhhKQ" title="Real-World Scene 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </div>
-        
-        <div class="video-item">
-            <div style="text-align: center;"><h3>Real-World Scene 3</h3></div>
-            <div class="video-embed">
-                <iframe src="https://www.youtube.com/embed/Tz91ZEMz_gU" title="Real-World Scene 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </div>
-
-    </div> 
-</div> -->
-    
 <!-- Teaser video-->
 <!-- <section class="hero teaser">
   <div class="container is-max-widescreen">
