@@ -165,6 +165,35 @@
   }
   </script>
   
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  const tabs = document.querySelectorAll('#video-tabs li');
+
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+
+      tabs.forEach(item => item.classList.remove('is-active'));
+      
+
+      tabContents.forEach(content => {
+        content.style.display = 'none'; 
+      });
+
+      tab.classList.add('is-active');
+
+      const targetContentId = tab.getAttribute('data-tab') + '-content';
+      const targetContent = document.getElementById(targetContentId);
+      if (targetContent) {
+        targetContent.style.display = 'block'; 
+      }
+    });
+  });
+});
+</script>
+
   <!-- Website/Organization Structured Data -->
   <script type="application/ld+json">
   {
@@ -322,28 +351,156 @@
 <!-- Paper method -->
 <section class="section hero">
   <div class="container is-max-widescreen">
-    <div class="columns is-centered has-text-centered">
+    <div class="container is-max-widescreen">
+    <div class="columns is-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Continuous Vision-Language-Action Co-Learning (CCoL)</h2>
-        <img src="static/videos/models.jpg" alt="CCoL Framework Overview" width="100%">
-        <p>
-          CCoL is a novel BC framework designed to tackle physical discontinuities and semantic-physical misalignment [cite: 1453-1454]. It consists of two key components:
-        </p>
-        <ul>
-          <li>
-            <strong>Multimodal Continuous Co-Learning (MCC):</strong> We use Neural Ordinary Differential Equations (NeuralODEs) to model the continuous evolution of the robot's proprioceptive state in a latent space[cite: 1564, 1587]. This ensures that the generated action trajectories are dynamically consistent and smooth, eliminating the jerky motions seen in conventional methods [cite: 1562-1563, 1723].
+        
+        <h2 class="title is-3 has-text-centered">Methodology</h2>
+
+        <h3 class="title is-4" style="margin-top: 2rem;">Motivation</h3>
+        <div class="content has-text-justified">
+          <p>
+            Conventional Behavioral Cloning (BC) approaches suffer from two key multimodal grounding challenges that lead to inaccurate action cloning and incoherent execution.
+          </p>
+        </div>
+        
+        <div class="content">
+          <ol style="margin-left: 2em;">
+            
+            <li>
+              <h6 class="" style="margin-bottom: 0.5em;">Physical Discontinuities</h6>
+              <p>
+                Decoupled, per-step predictions fail to account for underlying motion dynamics. This leads to <strong>jerky trajectories</strong> (e.g., high-jerk robotic arm movements) and kinematically invalid transitions, ultimately causing failures in long-horizon tasks.
+              </p>
+            </li>
+
+          <li style="margin-top: 1.5em;"> <h6 class="" style="margin-bottom: 0.5em;">Semantic-Physical Alignment</h6>
+            <p>
+              Static fusion methods fail to <strong>dynamically align language instructions</strong> with changing visuomotor states. For example, when executing "place the cup on the shelf," the robot must be able to shift its attention from the "cup" (during grasping) to the "shelf" (during placement).
+            </p>
           </li>
-          <li>
-            <strong>Cross-modal Semantic-Physical Alignment (CSA):</strong> We introduce a bidirectional cross-attention mechanism that dynamically anchors high-level language instructions (e.g., nouns like "cube" and verbs like "transfer") to the robot's low-level visuomotor representations at each timestep[cite: 1584, 1599, 1788]. This enables fine-grained semantic grounding and precise task execution[cite: 1485].
-          </li>
-        </ul>
+
+  </ol>
       </div>
-    </div>
-  </div>
+
+        <h3 class="title is-4" style="margin-top: 2rem;">Overall Architecture</h3>
+        <div class="content has-text-justified">
+          <p>
+            To address these challenges, we present <strong>Continuous Vision-Language-Action Co-Learning with Semantic-Physical Alignment (CCoL)</strong>. Our framework introduces two novel components: <em>Multimodal Continuous Co-Learning (MCC) </em> and <em>Cross-modal Semantic-Physical Alignment (CSA)</em>. MCC leverages dynamic proprioceptive modeling to capture temporal evolution and maps multimodal representation into a shared latent space. CSA ensures stepwise synchronization of semantic information across modalities at each step. These components are built upon context-aware representation learning, which encodes fundamental multimodal inputs, and the fused enriched representations are used to generate contextually relevant and physically feasible action sequences.
+          </p>
+        </div>
+        
+        <div class="has-text-centered" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+          <img src="static/images/models.jpg" alt="Overview of the CCoL framework" style="width:100%; max-width:900px; border: 1px solid #eee;">
+          <p class="is-size-6 has-text-grey" style="margin-top: 0.5rem;">
+            Fig. 1: Overview of the CCoL framework. MCC leverages dynamic proprioceptive modeling to capture temporal evolution and maps multimodal inputs into a shared latent space <span style="color: purple;">(purple frame)</span>. CSA synchronizes stepwise semantic information across modalities <span style="color: red;">(red frame)</span> to enable the generation of contextually and physically feasible action sequences.
+          </p>
+        </div>
+
+       <div class="content">
+          <ol style="margin-left: 2em;">
+            
+            <li>
+              <h6 class=" " style="margin-bottom: 0.5em;">Multimodal Continuous Co-Learning (MCC)</h6>
+              <div class="content has-text-justified">
+                <p>
+                  To solve <em>physical discontinuities</em>, MCC introduces Neural Ordinary Differential Equations (NeuralODEs). Instead of modeling discrete, fragmented states, MCC captures the continuous evolution of proprioceptive embeddings by solving an initial value problem defined by a differential equation.
+                </p>
+                <p>
+                  This approach provides temporally consistent representations that mitigate fragmentation and discontinuities found in conventional encoders. This directly results in the robust and smooth action trajectories seen in our experiments.
+                </p>
+              </div>
+            </li>
+
+            <li style="margin-top: 1.5em;">
+              <h6 class=" " style="margin-bottom: 0.5em;">Cross-modal Semantic-Physical Alignment (CSA)</h6>
+              <div class="content has-text-justified">
+                <p>
+                  To solve <em>semantic-physical misalignment</em>, CSA introduces a bidirectional cross-attention mechanism. This mechanism dynamically anchors high-level linguistic concepts (e.g., "cube", "socket") to the robot's low-level visuomotor representations at each specific timestep.
+                </p>
+              </div>
+
+              <div class="has-text-centered" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+                <img src="static/images/attentivemap.jpg" alt="Attentive Attribute Map from CSA" style="width:100%; max-width:700px; border: 1px solid #eee;">
+                <p class="is-size-6 has-text-grey" style="margin-top: 0.5rem;">
+                  <strong>Fig. 2:</strong> Illustration of attentive attribute map. Observations, task goals (text instructions), and robot proprioceptive data are tokenized into multimodal embeddings. 
+                </p>
+              </div>
+              <div class="content has-text-justified">
+                <p>
+                  Attention scores are computed separately for noun words (object-focused) and verb phrases (action-focused), as well as proprioceptive states, producing heatmaps that highlight relevant visual regions and trajectory features. Summing the heatmaps across layers generates attentive attribution maps, ensuring semantic grounding in visuomotor control. The fused features are calculated by attending from language to the visuomotor context, and vice-versa, ensuring a precise semantic-to-physical correspondence at each step of the task.
+                </p>
+              </div>
+            </li>
+
+          </ol>
+        </div>
+        
+      </div> </div> </div>
 </section>
 <!-- End paper method -->
 
-<div class="content-section" id="videos">
+<section class="section hero" id="videos">
+  <div class="container is-max-widescreen">
+
+    <h2 class="title is-3 has-text-centered">Videos</h2>
+    <p class="subtitle is-5 has-text-centered">
+      Watch CCoL in action. We show results in simulation and on a real 7-DoF robot.
+    </p>
+
+    <div class="tabs is-centered is-boxed is-medium" id="video-tabs">
+      <ul>
+        <li class="is-active" data-tab="simulation-tab">
+          <a>
+            <span class="icon is-small"><i class="fas fa-desktop"></i></span>
+            <span>Simulation</span>
+          </a>
+        </li>
+        <li data-tab="real-world-tab">
+          <a>
+            <span class="icon is-small"><i class="fas fa-robot"></i></span>
+            <span>Real-World (3 Videos)</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="tabs-content-container">
+
+      <div class="tab-content is-active" id="simulation-tab-content">
+        <div class="video-item">
+          <div style="text-align: center;"><h3>CCoL vs Baselines in Simulation</h3></div>
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/kj3bvXrMllc" title="Simulator Results" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="real-world-tab-content" style="display: none;">
+        <div class="video-grid-3-col">
+          <div class="video-item">
+            <div style="text-align: center;"><h3>Real-World: Pen Lifting</h3></div>
+            <div class="video-embed">
+              <iframe src="https://www.youtube.com/embed/8Q2mN1Rc6yk" title="Real-World Scene 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="video-item">
+            <div style="text-align: center;"><h3>Real-World: Cube Sliding</h3></div>
+            <div class="video-embed">
+              <iframe src="https://www.youtube.com/embed/1AIMAiQhhKQ" title="Real-World Scene 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="video-item">
+            <div style="text-align: center;"><h3>Real-World: Cubes Placement</h3></div>
+            <div class="video-embed">
+              <iframe src="https://www.youtube.com/embed/Tz91ZEMz_gU" title="Real-World Scene 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div> </div> 
+      </div> </div> </section>
+
+
+<!-- <div class="content-section" id="videos">
     <h2>Videos</h2>
     
     <div class="video-grid-2-col">
@@ -387,7 +544,7 @@
         </div>
 
     </div> 
-</div>
+</div> -->
     
 <!-- Teaser video-->
 <!-- <section class="hero teaser">
@@ -411,34 +568,30 @@
 
 
 <!-- Image carousel -->
-<section class="hero is-small">
+<!-- <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
       <div id="results-carousel" class="carousel results-carousel">
        <div class="item">
-        <!-- TODO: Replace with your research result images -->
-        <img src="static/images/carousel1.jpg" alt="First research result visualization" loading="lazy"/>
+         <img src="static/images/carousel1.jpg" alt="First research result visualization" loading="lazy"/> -->
         <!-- TODO: Replace with description of this result -->
-        <h2 class="subtitle has-text-centered">
+        <!-- <h2 class="subtitle has-text-centered">
           First image description.
         </h2>
       </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="Second research result visualization" loading="lazy"/>
+      <div class="item"> -->
+        <!-- <img src="static/images/carousel2.jpg" alt="Second research result visualization" loading="lazy"/>
         <h2 class="subtitle has-text-centered">
           Second image description.
         </h2>
       </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="Third research result visualization" loading="lazy"/>
+      <div class="item"> -->
+        <!-- <img src="static/images/carousel3.jpg" alt="Third research result visualization" loading="lazy"/>
         <h2 class="subtitle has-text-centered">
          Third image description.
        </h2>
      </div>
      <div class="item">
-      <!-- Your image here -->
       <img src="static/images/carousel4.jpg" alt="Fourth research result visualization" loading="lazy"/>
       <h2 class="subtitle has-text-centered">
         Fourth image description.
@@ -447,7 +600,7 @@
   </div>
 </div>
 </div>
-</section>
+</section>  -->
 <!-- End image carousel -->
 
 
@@ -475,36 +628,30 @@
 
 
 <!-- Video carousel -->
-<section class="hero is-small">
+<!-- <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
+      <h2 class="title is-3">Videos</h2>
       <div id="results-carousel" class="carousel results-carousel">
         <div class="item item-video1">
-          <!-- TODO: Add poster image for better preview -->
           <video poster="" id="video1" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
             <source src="static/videos/carousel1.mp4" type="video/mp4">
           </video>
         </div>
         <div class="item item-video2">
-          <!-- TODO: Add poster image for better preview -->
           <video poster="" id="video2" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
             <source src="static/videos/carousel2.mp4" type="video/mp4">
           </video>
         </div>
         <div class="item item-video3">
-          <!-- TODO: Add poster image for better preview -->
           <video poster="" id="video3" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
             <source src="static/videos/carousel3.mp4" type="video/mp4">
           </video>
         </div>
       </div>
     </div>
   </div>
-</section>
+</section> -->
 <!-- End video carousel -->
 
 
