@@ -1,6 +1,6 @@
 # CCoL
 
-> This is the github repo for CCoL-project. 
+> This is the github repo for CCoL-project, https://qhemu.github.io/CCoL/. 
 
 Parts of this project page were adopted from the [Nerfies](https://nerfies.github.io/) page.
 
